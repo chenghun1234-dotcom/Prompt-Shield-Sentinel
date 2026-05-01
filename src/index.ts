@@ -60,20 +60,23 @@ const UI = `<!DOCTYPE html>
         textarea { width: 100%; height: 150px; background: #1e293b; border: 1px solid #475569; color: white; padding: 15px; border-radius: 10px; margin: 20px 0; }
         button { width: 100%; padding: 15px; background: #6366f1; border: none; color: white; font-weight: bold; border-radius: 10px; cursor: pointer; }
         #res { margin-top: 20px; padding: 15px; background: #000; border-radius: 10px; min-height: 50px; white-space: pre-wrap; font-family: monospace; }
+        h1 { margin-bottom: 10px; }
+        .tagline { color: #94a3b8; margin-bottom: 30px; }
     </style>
 </head>
 <body>
     <h1>🛡️ Prompt-Shield-Sentinel</h1>
+    <p class="tagline">Zero-Cost, Edge-Native AI Security Layer</p>
     <div class="card">
-        <textarea id="inp" placeholder="테스트할 텍스트를 입력하세요..."></textarea>
-        <button onclick="scan()">Scan & Mask</button>
-        <div id="res">결과가 여기에 표시됩니다.</div>
+        <textarea id="inp" placeholder="Enter text to scan for PII and secrets..."></textarea>
+        <button onclick="scan()">Scan & Shield</button>
+        <div id="res">Shielded results will appear here...</div>
     </div>
     <script>
         async function scan() {
             const btn = document.querySelector('button');
             const res = document.getElementById('res');
-            btn.innerText = 'Processing...';
+            btn.innerText = 'Shielding...';
             try {
                 const r = await fetch('/v1/scan', {
                     method: 'POST',
@@ -85,7 +88,7 @@ const UI = `<!DOCTYPE html>
             } catch(e) {
                 res.innerText = 'Error: ' + e.message;
             } finally {
-                btn.innerText = 'Scan & Mask';
+                btn.innerText = 'Scan & Shield';
             }
         }
     </script>
