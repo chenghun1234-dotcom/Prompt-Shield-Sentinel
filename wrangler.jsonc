@@ -1,0 +1,9 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "prompt-shield-sentinel",
+  "main": "src/index.ts",
+  "compatibility_date": "2024-05-01",
+  "observability": {
+    "enabled": true
+  }
+}

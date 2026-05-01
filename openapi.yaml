@@ -1,0 +1,51 @@
+openapi: 3.0.0
+info:
+  title: Prompt-Shield-Sentinel API
+  description: High-performance, zero-log prompt security layer for PII masking and secret detection.
+  version: 1.0.0
+servers:
+  - url: https://prompt-shield-sentinel.your-subdomain.workers.dev
+    description: Production Edge Worker
+paths:
+  /v1/scan:
+    post:
+      summary: Scan and shield a prompt
+      description: Detects and masks PII, secrets, and prompt injection attempts in the provided text.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                prompt:
+                  type: string
+                  example: "My email is test@example.com and my secret key is sk-12345."
+      responses:
+        '200':
+          description: Successful scan
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  masked_prompt:
+                    type: string
+                  detections:
+                    type: array
+                    items:
+                      type: string
+                  security_threats:
+                    type: object
+                    properties:
+                      injection_detected:
+                        type: boolean
+                  metrics:
+                    type: object
+                    properties:
+                      latency_ms:
+                        type: integer
+        '400':
+          description: Invalid request

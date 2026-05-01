@@ -1,0 +1,8 @@
+node_modules
+.wrangler
+dist
+.dev.vars
+package-lock.json
+.vscode
+.idea
+*.log
